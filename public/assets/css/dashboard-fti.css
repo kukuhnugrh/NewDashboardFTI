@@ -140,3 +140,7 @@ body {
     height: 220px;
     width: 100%;
 }
+
+.form-control, .form-select{
+    margin-top: 10px;
+}

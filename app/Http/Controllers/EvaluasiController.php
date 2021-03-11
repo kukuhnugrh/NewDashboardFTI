@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use PDF;
 
 class EvaluasiController extends Controller
 {
@@ -16,7 +17,7 @@ class EvaluasiController extends Controller
     {
         $mahasiswa = DB::table('mahasiswa')
                     ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
-                    ->Paginate(50);
+                    ->Paginate(25);
         return view('evaluasi', ['mahasiswa'=>$mahasiswa]);
     }
 
@@ -47,9 +48,20 @@ class EvaluasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($keyTahun)
     {
-        //
+        if($keyTahun == "0"){
+            $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
+                    ->Paginate(25);
+        }else{
+            $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')
+                    ->where('mahasiswa.nim', 'like' ,'71'.$keyTahun.'%')    
+                    ->Paginate(25);
+            $yearSelected = 'Tahun 20'.$keyTahun;
+        }
+        return view('evaluasi', ['mahasiswa'=>$mahasiswa, 'yearSelected'=>$yearSelected]);
     }
 
     /**
@@ -84,6 +96,14 @@ class EvaluasiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function liveSearch($key){
+        $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')  
+                    ->where('mahasiswa.nim', 'like', '%'.$key.'%')  
+                    ->get();
+        return $mahasiswa;
     }
 
     public function cetak_pdf(){

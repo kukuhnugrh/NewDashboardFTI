@@ -48,9 +48,20 @@ class PraEvaluasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($keyTahun)
     {
-        //
+        if($keyTahun == "0"){
+            $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
+                    ->Paginate(25);
+        }else{
+            $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')
+                    ->where('mahasiswa.nim', 'like' ,'71'.$keyTahun.'%')    
+                    ->Paginate(25);
+            $yearSelected = 'Tahun 20'.$keyTahun;
+        }
+        return view('pra-evaluasi', ['mahasiswa'=>$mahasiswa, 'yearSelected'=>$yearSelected]);
     }
 
     /**
@@ -85,6 +96,14 @@ class PraEvaluasiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function liveSearch($key){
+        $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')  
+                    ->where('mahasiswa.nim', 'like', '%'.$key.'%')  
+                    ->get();
+        return $mahasiswa;
     }
 
     public function cetak_pdf(){

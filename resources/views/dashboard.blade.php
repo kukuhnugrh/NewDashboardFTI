@@ -2,8 +2,8 @@
 @section('title', 'Dashboard FTI')
 @section('content')
 <div class="content">
-    <div class="row">
-        <div class="col-12">
+    <div class="row ms-3">
+        <div class="col-md-12">
             <div class="card card-chart">
                 <div class="card-header">
                     <div class="row">
@@ -21,12 +21,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myChart" style="position: relative; height:40vh; width:80vw"></canvas>
-                    </div>
+                    <canvas id="myChart" style="position: relative; height:40vh; width:80vw"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts/master')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-@section('title', 'Evaluasi')
+@section('title', 'Pra-Evaluasi')
 @section('content')
 <div class="content">
     <div class="row ms-3">
@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6 text-left card-title">
-                            <h5>Evaluasi</h5>
+                            <h5>Pra Evaluasi</h5>
                         </div>
                         <div class="col-6 text-end">
                             <button class="btn btn-primary">Export PDF</button>
@@ -34,7 +34,7 @@
                                 <input id="cariNim" type="number" class="form-control" placeholder="Masukkan Nim" aria-label="Cari">
                             </div>  
                         </div>  
-                    </div>
+                    </div> 
                 </div>
                 <div class="card-body">
                     <table class="table table-hover text-center">
@@ -43,27 +43,20 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Nim </th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Alamat</th>
                                 <th scope="col"> IPK </th>
                                 <th scope="col">Total SKS</th>
-                                <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="dtMahasiswa">
                             @foreach($mahasiswa as $mhs)
                             <tr>
                                 <td scope="row">{{ $loop->iteration }}</td>
                                 <td>{{ $mhs->nim}}</td>
                                 <td>{{ $mhs->nama}}</td>
-                                <td>{{ $mhs->status}}</td>
+                                <td>{{ $mhs->alamat}}</td>
                                 <td>{{ $mhs->ipk}}</td>
                                 <td>{{ $mhs->total_sks}}</td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <a type="button" class="btn btn-success" href="/evaluasi/detail/dataPribadi"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger" href="/evaluasi/delete"><i class="fas fa-trash-alt"></i></a>
-                                    </div>  
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -95,16 +88,11 @@
                         $('#dtMahasiswa').append("<tr><td scope='row'>"+i+
                             "</td><td>"+value.nim+
                             "</td><td>"+value.nama+
-                            "</td><td>"+value.status+
+                            "</td><td>"+value.alamat+
                             "</td><td>"+value.ipk+
                             "</td><td>"+value.total_sks+
-                            "</td><td>"+
-                            "<div class='btn-group' role='group' aria-label='Basic mixed styles example'>"+
-                                "<a type='button' class='btn btn-success' href='/evaluasi/detail/dataPribadi"+value.nim+"'><i class='fas fa-edit'></i></a>"+
-                                "<a type='button' class='btn btn-danger' href='/evaluasi/delete"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
-                            "</div>"+
                             "</td></tr>");
-                            i++; 
+                            i++;
                     });
                 }
             });
