@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Umat Gematen</title>
+    <title>Pra-Evaluasi PDF</title>
     <style>
         @font-face {
             font-family: 'Muli';
@@ -34,16 +34,16 @@
                 <th scope="col">Total SKS</th>
             </tr>
         </thead>
-        <tbody id="daftarUmatWilayah">
+        <tbody id="dtMahasiswa">
             @foreach($mahasiswa as $mhs)
-            <tr>
-                <td scope="row">{{ $loop->iteration }}</td>
-                <td>{{ $mhs->nim}}</td>
-                <td>{{ $mhs->nama}}</td>
-                <td>{{ $mhs->alamat}}</td>
-                <td>{{ $mhs->ipk}}</td>
-                <td>{{ $mhs->total_sks}}</td>
-            </tr>
+                <tr>
+                    <td scope="row">{{ $loop->iteration }}</td>
+                    <td>{{ $mhs->nim}}</td>
+                    <td>{{ $mhs->nama}}</td>
+                    <td>{{ $mhs->alamat}}</td>
+                    <td>{{ $mhs->ipk}}</td>
+                    <td>{{ $mhs->total_sks}}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

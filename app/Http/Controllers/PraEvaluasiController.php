@@ -106,10 +106,20 @@ class PraEvaluasiController extends Controller
         return $mahasiswa;
     }
 
-    public function cetak_pdf(){
-        $mahasiswa = DB::table('mahasiswa')
+    public function cetak_pdf($keyTahun){
+        if($keyTahun == "0"){
+            $mahasiswa = DB::table('mahasiswa')
                     ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
                     ->get();
-        $pdf = DF::loadview('pdf/pdf-pra-evaluasi', ['mahasiswa' => $mahasiswa])->setPaper('a4', 'landscape');
+            $pdf = PDF::loadview('pdf/pdf-pra-evaluasi', ['mahasiswa' => $mahasiswa])->setPaper('a4', 'landscape');
+        }else{
+            $mahasiswa = DB::table('mahasiswa')
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')
+                    ->where('mahasiswa.nim', 'like' ,'71'.$keyTahun.'%')    
+                    ->get();
+            $yearSelected = 'Tahun 20'.$keyTahun;
+            $pdf = PDF::loadview('pdf/pdf-pra-evaluasi', ['mahasiswa' => $mahasiswa])->setPaper('a4', 'landscape');
+        }
+        return $pdf->download('DATAUMAT');
     }
 }

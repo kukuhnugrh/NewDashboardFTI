@@ -17,6 +17,7 @@ Route::get('/', 'DashboardController@index');
 Route::get('/pra-evaluasi', 'PraEvaluasiController@index');
 Route::get('/pra-evaluasi/{keyTahun}', 'PraEvaluasiController@show');
 Route::get('/pra-evaluasi/liveSearch/{key}', 'PraEvaluasiController@liveSearch');
+Route::get('/pra-evaluasi/PDF/{keyTahun}', 'PraEvaluasiController@cetak_pdf');
 Route::get('/evaluasi', 'EvaluasiController@index');
 Route::get('/evaluasi/dataPribadi', 'DetailMahasiswaController@index');
 Route::get('/evaluasi/dataAkademik', 'DetailMahasiswaController@dataAkademik');

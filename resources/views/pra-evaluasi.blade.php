@@ -13,7 +13,11 @@
                             <h5>Pra Evaluasi</h5>
                         </div>
                         <div class="col-6 text-end">
-                            <button class="btn btn-primary">Export PDF</button>
+                                @if(isset($yearSelected))
+                                    <a href="/pra-evaluasi/PDF/{{ substr($yearSelected, -2) }}" class="btn btn-primary" target="_blank">Export PDF</a>
+                                @else
+                                    <a href="/pra-evaluasi/PDF/0" class="btn btn-primary" target="_blank">Export PDF</a>
+                                @endif
                             <select name="YearOfDropdown" id="YearOfDropdown" class="btn dropdown-primary btn-primary">
                                 @if(isset($yearSelected))
                                     <option hidden>{{ $yearSelected }}</option>
