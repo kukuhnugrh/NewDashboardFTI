@@ -15,13 +15,14 @@ class DetailMahasiswaController extends Controller
     {
         session()->forget('detailTab');
         session(['detailTab' => 'dataPribadi']);
-        return view('detail_mahasiswa');
+        return view('detail-pribadi');
     }
 
     public function dataAkademik()
     {
         session()->forget('detailTab');
         session(['detailTab' => 'dataAkademik']);
+        return view('detail-akademik');
     }
 
     /**

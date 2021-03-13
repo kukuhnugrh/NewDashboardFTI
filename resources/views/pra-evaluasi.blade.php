@@ -29,9 +29,9 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                <input id="cariNim" type="number" class="form-control" placeholder="Masukkan Nim" aria-label="Cari">
+                            <div class="input-group input-group-sm mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-search"></i></span>
+                                <input id="cariNim" type="number" class="form-control" placeholder="Masukkan Nim" aria-label="Cari" aria-describedby="inputGroup-sizing-sm">
                             </div>  
                         </div>  
                     </div> 

@@ -18,7 +18,6 @@ Route::get('/pra-evaluasi', 'PraEvaluasiController@index');
 Route::get('/pra-evaluasi/{keyTahun}', 'PraEvaluasiController@show');
 Route::get('/pra-evaluasi/liveSearch/{key}', 'PraEvaluasiController@liveSearch');
 Route::get('/evaluasi', 'EvaluasiController@index');
-Route::get('/evaluasi/detail/dataPribadi', 'DetailMahasiswaController@index');
-Route::get('/evaluasi/detail/dataAkademik', 'DetailMahasiswaController@dataAkademik');
-
-
+Route::get('/evaluasi/dataPribadi', 'DetailMahasiswaController@index');
+Route::get('/evaluasi/dataAkademik', 'DetailMahasiswaController@dataAkademik');
+Route::post('/evaluasi/delete/{id}', 'EvaluasiController@destroy');

@@ -60,7 +60,7 @@
                                 <td>{{ $mhs->total_sks}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <a type="button" class="btn btn-success" href="/evaluasi/detail/dataPribadi"><i class="fas fa-edit"></i></a>
+                                        <a type="button" class="btn btn-success" href="/evaluasi/dataPribadi"><i class="fas fa-edit"></i></a>
                                         <a type="button" class="btn btn-danger" href="/evaluasi/delete"><i class="fas fa-trash-alt"></i></a>
                                     </div>  
                                 </td>
@@ -100,7 +100,7 @@
                             "</td><td>"+value.total_sks+
                             "</td><td>"+
                             "<div class='btn-group' role='group' aria-label='Basic mixed styles example'>"+
-                                "<a type='button' class='btn btn-success' href='/evaluasi/detail/dataPribadi"+value.nim+"'><i class='fas fa-edit'></i></a>"+
+                                "<a type='button' class='btn btn-success' href='/evaluasi/dataPribadi"+value.nim+"'><i class='fas fa-edit'></i></a>"+
                                 "<a type='button' class='btn btn-danger' href='/evaluasi/delete"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
                             "</div>"+
                             "</td></tr>");

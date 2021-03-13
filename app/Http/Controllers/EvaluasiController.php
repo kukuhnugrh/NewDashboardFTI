@@ -95,7 +95,7 @@ class EvaluasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 
     public function liveSearch($key){
