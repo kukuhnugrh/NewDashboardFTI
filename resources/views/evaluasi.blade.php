@@ -49,7 +49,7 @@
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  id="dtMahasiswa">
                             @foreach($mahasiswa as $mhs)
                             <tr>
                                 <td scope="row">{{ $loop->iteration }}</td>
@@ -60,8 +60,8 @@
                                 <td>{{ $mhs->total_sks}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <a type="button" class="btn btn-success" href="/evaluasi/dataPribadi"><i class="fas fa-edit"></i></a>
-                                        <a type="button" class="btn btn-danger" href="/evaluasi/delete"><i class="fas fa-trash-alt"></i></a>
+                                        <a type="button" class="btn btn-success" href="/dataPribadi/{{ $mhs->nim }}"><i class="fas fa-edit"></i></a>
+                                        <a type="button" class="btn btn-danger" href="/delete"><i class="fas fa-trash-alt"></i></a>
                                     </div>  
                                 </td>
                             </tr>
@@ -85,7 +85,7 @@
         $('#cariNim').on('keyup', function(){
             var key = $(this).val();
             $.ajax({
-                url: '/pra-evaluasi/liveSearch/'+key,
+                url: '/evaluasi/liveSearch/'+key,
                 type: "GET",
                 dataType: "json",
                 success:function(data){
@@ -100,8 +100,8 @@
                             "</td><td>"+value.total_sks+
                             "</td><td>"+
                             "<div class='btn-group' role='group' aria-label='Basic mixed styles example'>"+
-                                "<a type='button' class='btn btn-success' href='/evaluasi/dataPribadi"+value.nim+"'><i class='fas fa-edit'></i></a>"+
-                                "<a type='button' class='btn btn-danger' href='/evaluasi/delete"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
+                                "<a type='button' class='btn btn-success' href='/dataPribadi"+value.nim+"'><i class='fas fa-edit'></i></a>"+
+                                "<a type='button' class='btn btn-danger' href='/delete"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
                             "</div>"+
                             "</td></tr>");
                             i++; 

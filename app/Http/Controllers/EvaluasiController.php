@@ -15,8 +15,14 @@ class EvaluasiController extends Controller
      */
     public function index()
     {
+        $kodeSemesterTerakhir = DB::table('mahasiswa_status')
+                    ->orderBy('kode_semester', 'desc')
+                    ->pluck('kode_semester')
+                    ->first();
+
         $mahasiswa = DB::table('mahasiswa')
-                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')  
+                    ->where('mahasiswa_status.kode_semester', $kodeSemesterTerakhir)  
                     ->Paginate(25);
         return view('evaluasi', ['mahasiswa'=>$mahasiswa]);
     }
@@ -50,14 +56,21 @@ class EvaluasiController extends Controller
      */
     public function show($keyTahun)
     {
+        $kodeSemesterTerakhir = DB::table('mahasiswa_status')
+                    ->orderBy('kode_semester', 'desc')
+                    ->pluck('kode_semester')
+                    ->first();
+        
         if($keyTahun == "0"){
             $mahasiswa = DB::table('mahasiswa')
-                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
+                    ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')  
+                    ->where('mahasiswa_status.kode_semester', $kodeSemesterTerakhir)  
                     ->Paginate(25);
         }else{
             $mahasiswa = DB::table('mahasiswa')
                     ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')
                     ->where('mahasiswa.nim', 'like' ,'71'.$keyTahun.'%')    
+                    ->where('mahasiswa_status.kode_semester', $kodeSemesterTerakhir)
                     ->Paginate(25);
             $yearSelected = 'Tahun 20'.$keyTahun;
         }
@@ -99,14 +112,25 @@ class EvaluasiController extends Controller
     }
 
     public function liveSearch($key){
+        $kodeSemesterTerakhir = DB::table('mahasiswa_status')
+                    ->orderBy('kode_semester', 'desc')
+                    ->pluck('kode_semester')
+                    ->first();
+
         $mahasiswa = DB::table('mahasiswa')
                     ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')  
                     ->where('mahasiswa.nim', 'like', '%'.$key.'%')  
+                    ->where('mahasiswa_status.kode_semester', $kodeSemesterTerakhir)
                     ->get();
         return $mahasiswa;
     }
 
     public function cetak_pdf(){
+        $kodeSemesterTerakhir = DB::table('mahasiswa_status')
+                    ->orderBy('kode_semester', 'desc')
+                    ->pluck('kode_semester')
+                    ->first();
+
         $mahasiswa = DB::table('mahasiswa')
                     ->join('mahasiswa_status', 'mahasiswa.nim', '=', 'mahasiswa_status.nim')    
                     ->get();

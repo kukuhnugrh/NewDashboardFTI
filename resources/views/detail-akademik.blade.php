@@ -19,8 +19,16 @@
                     <form action="" method="post">
                         <div class="row p-3" id="form-content">
                             <div class="col-6">
-                                <input class="form-control form-control-sm" type="text" placeholder="Nama" aria-label="Nama example">
-                                <input class="form-control form-control-sm" type="email" placeholder="Email" aria-label="Email example">
+                            <div>
+                                <label for="Nama">Nama</label>
+                                <input class="form-control form-control-sm" type="text" placeholder="Nama" aria-label="Nama">
+                            </div>
+                                <input class="form-control form-control-sm" type="text" placeholder="Nama" aria-label="Nama">
+                                <input class="form-control form-control-sm" type="number" placeholder="Nim" aria-label="Nim">
+                                <input class="form-control form-control-sm" type="number" placeholder="Nim Lain" aria-label="Nim">
+                                <input class="form-control form-control-sm" type="email" placeholder="Nim" aria-label="Nim">
+                                <input class="form-control form-control-sm" type="email" placeholder="Nim" aria-label="Nim">
+                                <input class="form-control form-control-sm" type="email" placeholder="Nim" aria-label="Nim">
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
