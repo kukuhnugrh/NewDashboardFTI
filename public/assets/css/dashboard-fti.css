@@ -51,6 +51,10 @@ main, nav, section {
     display: block;
 }
 
+.bg-default{
+    background-color: #F0FAF8;
+}
+
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;

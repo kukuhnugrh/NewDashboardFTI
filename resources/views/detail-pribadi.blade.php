@@ -10,12 +10,89 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <h3 class="fw-bold text-dark">Info Pribadi</h3>
+                            <h1 class="fw-bold text-dark">Info Pribadi</h1>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <div class="d-flex justify-content-center">
+                        @foreach( $mahasiswa as $mhs)
+                        <div class="p-2 bd-highlight w-25">
+                            <div class="border border-secondary rounded w-100 p-3 bg-default">
+                                <h4 class="fw-bold text-dark mb-5">Informasi Pribadi</h4>
+                                <div class="mb-3">
+                                    <label for="namaMhs" class="form-label fw-bold">Nama</label>
+                                    <input type="text" class="form-control" id="namaMhs" value="{{ $mhs->nama }}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nimMhs" class="form-label fw-bold">Nim</label>
+                                    <input type="text" class="form-control" id="nimMhs" value="{{ $mhs->nim }}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nimLainMhs" class="form-label fw-bold">Nim Lain</label>
+                                    <input type="text" class="form-control" id="nimLainMhs" value="{{ $mahasiswaPemutihan->isEmpty() ? '-' : $mahasiswaPemutihan[0][nim_lama] }}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="alamatMhs" class="form-label fw-bold">Alamat</label>
+                                    <input type="text" class="form-control" id="alamatMhs" value="{{ $mhs->alamat }}" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="noHpMhs" class="form-label fw-bold">No Hp</label>
+                                    <input type="text" class="form-control" id="noHpMhs" value="-" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dosenWaliMhs" class="form-label fw-bold">Dosen Wali</label>
+                                    <input type="text" class="form-control" id="dosenWaliMhs" value="-" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="statusICEMhs" class="form-label fw-bold">Status ICE</label>
+                                    <input type="text" class="form-control" id="statusICEMhs" value="-" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight w-50">
+                            <div class="d-flex justify-content-center h-100 d-inline-block">
+                                <div class="d-flex flex-column bd-highlight w-100 px-3">
+                                    <div class="bd-highligh h-50 d-inline-block">
+                                        <div class="d-flex justify-content-center h-75 ">
+                                            <div class="bd-highlight w-50 pe-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body border border-secondary rounded bg-default">
+                                                        <h2 class="card-title fw-bold text-center text-dark">Total SKS</h2>
+                                                        <h1 class="card-text fw-bold text-center text-dark position-absolute top-50 start-50 translate-middle">144/144</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bd-highlight w-50 ps-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body border border-secondary rounded bg-default">
+                                                        <h2 class="card-title fw-bold text-center text-dark">IPK</h2>
+                                                        <h1 class="card-text fw-bold text-center text-dark position-absolute top-50 start-50 translate-middle">{{ $mhs->ipk }}</h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bd-highlight h-50 d-inline-block border border-secondary rounded bg-default">
+                                        <h4 class="fw-bold text-dark mb-5">IP Semester</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight w-25">
+                            <div class="border border-secondary rounded w-100 p-3 bg-default h-100">
+                                <h4 class="fw-bold text-dark mb-5">Status</h4>
+                                @foreach( $statusMahasiswa as $stmhs)
+                                <div class="mb-3">
+                                    <label for="namaMhs" class="form-label fw-bold">Tahun {{ $stmhs->kode_semester }}</label>
+                                    <input type="text" class="form-control" id="namaMhs" value="{{ $stmhs->status }}" disabled>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <!-- <form action="" method="post">
                         <div class="row p-3" id="form-content">
                             @foreach( $mahasiswa as $mhs)
                             <div class="col-6"> 
@@ -76,7 +153,7 @@
                             </div>
                             @endforeach
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>

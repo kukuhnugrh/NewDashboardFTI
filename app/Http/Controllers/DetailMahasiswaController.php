@@ -25,6 +25,10 @@ class DetailMahasiswaController extends Controller
                     ->where('mahasiswa_status.kode_semester', $kodeSemesterTerakhir)
                     ->get();
 
+        $statusMahasiswa = DB::table('mahasiswa_status')
+                        ->where('mahasiswa_status.nim', $nim)
+                        ->get();
+
         $mahasiswaPemutihan = DB::table('mahasiswa_pemutihan')
                         ->where('mahasiswa_pemutihan.nim_lama', $nim)
                         ->get();
@@ -32,7 +36,7 @@ class DetailMahasiswaController extends Controller
         $khs = DB::table('khs')
                         ->where('khs.nim', $nim)
                         ->count();
-        return view('detail-pribadi', ['mahasiswa'=>$mahasiswa, 'mahasiswaPemutihan'=>$mahasiswaPemutihan, 'khs'=>$khs]);
+        return view('detail-pribadi', ['mahasiswa'=>$mahasiswa, 'mahasiswaPemutihan'=>$mahasiswaPemutihan, 'khs'=>$khs, 'statusMahasiswa'=>$statusMahasiswa]);
     }
 
     /**

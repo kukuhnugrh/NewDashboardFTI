@@ -100,8 +100,8 @@
                             "</td><td>"+value.total_sks+
                             "</td><td>"+
                             "<div class='btn-group' role='group' aria-label='Basic mixed styles example'>"+
-                                "<a type='button' class='btn btn-success' href='/dataPribadi"+value.nim+"'><i class='fas fa-edit'></i></a>"+
-                                "<a type='button' class='btn btn-danger' href='/delete"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
+                                "<a type='button' class='btn btn-success' href='/dataPribadi/"+value.nim+"'><i class='fas fa-edit'></i></a>"+
+                                "<a type='button' class='btn btn-danger' href='/delete/"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
                             "</div>"+
                             "</td></tr>");
                             i++; 
