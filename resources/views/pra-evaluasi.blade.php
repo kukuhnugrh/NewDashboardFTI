@@ -50,6 +50,7 @@
                                 <th scope="col">Alamat</th>
                                 <th scope="col"> IPK </th>
                                 <th scope="col">Total SKS</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody id="dtMahasiswa">
@@ -61,6 +62,12 @@
                                 <td>{{ $mhs->alamat}}</td>
                                 <td>{{ $mhs->ipk}}</td>
                                 <td>{{ $mhs->total_sks}}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <a type="button" class="btn btn-success" href="/dataPribadi/{{ $mhs->nim }}"><i class="fas fa-edit"></i></a>
+                                        <a type="button" class="btn btn-danger" href="/delete"><i class="fas fa-trash-alt"></i></a>
+                                    </div>  
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -95,6 +102,11 @@
                             "</td><td>"+value.alamat+
                             "</td><td>"+value.ipk+
                             "</td><td>"+value.total_sks+
+                            "</td><td>"+
+                            "<div class='btn-group' role='group' aria-label='Basic mixed styles example'>"+
+                                "<a type='button' class='btn btn-success' href='/dataPribadi/"+value.nim+"'><i class='fas fa-edit'></i></a>"+
+                                "<a type='button' class='btn btn-danger' href='/delete/"+value.nim+"'><i class='fas fa-trash-alt'></i></a>"+
+                            "</div>"+
                             "</td></tr>");
                             i++;
                     });

@@ -33,10 +33,55 @@ class DetailMahasiswaController extends Controller
                         ->where('mahasiswa_pemutihan.nim_lama', $nim)
                         ->get();
 
-        $khs = DB::table('khs')
+        $khs = DB::table("khs")
                         ->where('khs.nim', $nim)
-                        ->count();
-        return view('detail-pribadi', ['mahasiswa'=>$mahasiswa, 'mahasiswaPemutihan'=>$mahasiswaPemutihan, 'khs'=>$khs, 'statusMahasiswa'=>$statusMahasiswa]);
+                        ->join("matakuliah", "matakuliah.kode_matakuliah", "=", "khs.kode_matakuliah")
+                        ->where(function ($query){
+                            $query->where('khs.nilai', 'like', 'A%')
+                                    ->orWhere('khs.nilai', 'like', 'B%')
+                                    ->orWhere('khs.nilai', 'like', 'C%');
+                        })
+                        ->sum('matakuliah.sks');
+
+                        
+
+        $sksWajib = DB::table('khs')
+                        ->join("matakuliah", "matakuliah.kode_matakuliah", "=", "khs.kode_matakuliah")
+                        ->join("kelompok_matakuliah", "kelompok_matakuliah.kode_kelompok_matakuliah", "=", "matakuliah.kode_kelompok_matakuliah")
+                        ->where('khs.nim', $nim)
+                        ->where("kelompok_matakuliah.kode_kelompok_matakuliah", "K18")
+                        ->sum('matakuliah.sks');
+
+        $sksWajibProfil = DB::table('khs')
+                        ->join("matakuliah", "matakuliah.kode_matakuliah", "=", "khs.kode_matakuliah")
+                        ->join("kelompok_matakuliah", "kelompok_matakuliah.kode_kelompok_matakuliah", "=", "matakuliah.kode_kelompok_matakuliah")
+                        ->where('khs.nim', $nim)
+                        ->where("kelompok_matakuliah.kode_kelompok_matakuliah", "K16")
+                        ->sum('matakuliah.sks');
+
+        $sksBebasProdi = DB::table('khs')
+                        ->join("matakuliah", "matakuliah.kode_matakuliah", "=", "khs.kode_matakuliah")
+                        ->join("kelompok_matakuliah", "kelompok_matakuliah.kode_kelompok_matakuliah", "=", "matakuliah.kode_kelompok_matakuliah")
+                        ->where('khs.nim', $nim)
+                        ->where("kelompok_matakuliah.kode_kelompok_matakuliah", "K22")
+                        ->sum('matakuliah.sks');
+
+        $sksBebasNonProdi = DB::table('khs')
+                        ->join("matakuliah", "matakuliah.kode_matakuliah", "=", "khs.kode_matakuliah")
+                        ->join("kelompok_matakuliah", "kelompok_matakuliah.kode_kelompok_matakuliah", "=", "matakuliah.kode_kelompok_matakuliah")
+                        ->where('khs.nim', $nim)
+                        ->where("kelompok_matakuliah.kode_kelompok_matakuliah", "K21")
+                        ->sum('matakuliah.sks');
+
+        $daftarKHS = DB::table("khs")
+                        ->join("matakuliah", "matakuliah.kode_matakuliah", "=", "khs.kode_matakuliah")
+                        ->where('khs.nim', $nim)
+                        ->where('khs.kode_tahun_ajaran', $kodeSemesterTerakhir)
+                        ->get();
+
+        
+        return view('detail-pribadi', ['mahasiswa'=>$mahasiswa, 'mahasiswaPemutihan'=>$mahasiswaPemutihan, 'statusMahasiswa'=>$statusMahasiswa, 'daftarKHS'=>$daftarKHS,
+                                        'khs'=>$khs, 'sksWajib'=>$sksWajib, 'sksWajibProfil'=>$sksWajibProfil, 'sksBebasProdi'=>$sksBebasProdi, 'sksBebasNonProdi'=>$sksBebasNonProdi ]);
     }
 
     /**

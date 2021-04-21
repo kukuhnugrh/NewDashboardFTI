@@ -10,12 +10,160 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <h1 class="fw-bold text-dark">Info Pribadi</h1>
+                            <div class="container-fluid p-3" style="background-color: #E0E0E0">
+                                <h4 class="text-dark">Total SKS</h4>
+                                <div class="d-flex justify-content-around">
+                                    <div class="container-sm p-2 border rounded-3 bg-light m-2">
+                                        <span class="d-block align-items-start h-75 pb-3">
+                                            Total SKS Lulus
+                                        </span>
+                                        <span class="d-block text-dark h-25">
+                                            {{ $khs }}/144
+                                        </span>
+                                    </div>
+                                    <div class="container-sm p-2 border rounded-3 bg-light m-2">
+                                        <span class="d-block align-items-start h-75 pb-3">
+                                            Total SKS Matakuliah Wajib
+                                        </span>
+                                        <span class="d-block text-dark h-25">
+                                            {{ $sksWajib }}
+                                        </span>
+                                    </div>
+                                    <div class="container-sm p-2 border rounded-3 bg-light m-2">
+                                        <span class="d-block align-items-start h-75 pb-3">
+                                            Total SKS Wajib Profil
+                                        </span>
+                                        <span class="d-block  text-dark h-25">
+                                        {{ $sksWajibProfil }}
+                                        </span>
+                                    </div>
+                                    <div class="container-sm p-2 border rounded-3 bg-light m-2">
+                                        <span class="d-block align-items-start h-75 pb-3">
+                                            Total SKS Bebas Prodi
+                                        </span>
+                                        <span class="d-block text-dark h-25">
+                                            {{ $sksBebasProdi }}
+                                        </span>
+                                    </div>
+                                    <div class="container-sm p-2 border rounded-3 bg-light m-2">
+                                        <span class="d-block align-items-start h-75 pb-3">
+                                            Total SKS Bebas Non Prodi
+                                        </span>
+                                        <span class="d-block text-dark h-25">
+                                            {{ $sksBebasNonProdi }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="d-flex justify-content-center">
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                        @foreach( $mahasiswa as $mhs)
+                            <div class="col-3 border rounded-3">
+                                <div class="container-fluid p-0 py-2">
+                                    <h5 class="text-dark m-2">Informasi Pribadi</h5>
+                                    <div class="container-fluid border border-secondary mb-4"></div>
+                                    <div class="mb-3">
+                                        <label for="namaMhs" class="fw-bold">Nama</label>
+                                        <input type="text" class="form-control" id="namaMhs" value="{{ $mhs->nama }}" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nimMhs" class="fw-bold">Nim</label>
+                                        <input type="text" class="form-control" id="nimMhs" value="{{ $mhs->nim }}" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nimLainMhs" class="fw-bold">Nim Lain</label>
+                                        <input type="text" class="form-control" id="nimLainMhs" value="{{ $mahasiswaPemutihan->isEmpty() ? '-' : $mahasiswaPemutihan[0][nim_lama] }}" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="alamatMhs" class="fw-bold">Alamat</label>
+                                        <input type="text" class="form-control" id="alamatMhs" value="{{ $mhs->alamat }}" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="noHpMhs" class="fw-bold">No Hp</label>
+                                        <input type="text" class="form-control" id="noHpMhs" value="-" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="dosenWaliMhs" class="fw-bold">Dosen Wali</label>
+                                        <input type="text" class="form-control" id="dosenWaliMhs" value="-" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="statusICEMhs" class="fw-bold">Status ICE</label>
+                                        <input type="text" class="form-control" id="statusICEMhs" value="-" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5 border rounded-3 py-3">
+                                <div class="container-fluid">
+                                    <div class="border border-secondary d-block h-50 my-1">
+                                        asd
+                                    </div>
+                                    <div class="border border-secondary d-block h-50 my-1 overflow-auto">
+                                        <div class="row p-3">
+                                            <div class="col-3">
+                                                <h4 class="text-dark">KHS</h4>
+                                            </div>
+                                            <div class="col-9 d-flex flex-row-reverse">
+                                                <select name="YearOfDropdown" id="YearOfDropdown" class="btn dropdown-primary btn-primary">
+                                                    @if(isset($yearSelected))
+                                                        <option hidden>{{ $yearSelected }}</option>
+                                                    @else
+                                                        <option hidden>-- Pilih Semester --</option>
+                                                    @endif
+                                                    <option value="0" hidden>Semester Sekarang</option>
+                                                    @for($i=2012 ; $i<=date("Y") ; $i++ )
+                                                        <option value="{{ substr($i, -2) }}">Semester {{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="container">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Kode</th>
+                                                    <th scope="col">Matakuliah</th>
+                                                    <th scope="col">SKS</th>
+                                                    <th scope="col">Nilai</th>
+                                                    <th scope="col">Bobot</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($daftarKHS as $daftar)
+                                                    <tr>
+                                                        <th scope="row">{{ $loop->iteration }}</th>
+                                                        <td>{{ $daftar->kode_matakuliah }}</td>
+                                                        <td>{{ $daftar->nama_matakuliah }}</td>
+                                                        <td>{{ $daftar->sks }}</td>
+                                                        <td>{{ $daftar->nilai_angka }}</td>
+                                                        <td>{{ $daftar->harga }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 border rounded-3">
+                                <div class="container-fluid p-0 py-2">
+                                    <h4 class="fw-bold text-dark mb-5">Status</h4>
+                                    @foreach( $statusMahasiswa as $stmhs)
+                                    <div class="mb-3">
+                                        <label for="namaMhs" class="form-label fw-bold">Tahun {{ $stmhs->kode_semester }}</label>
+                                        <input type="text" class="form-control" id="namaMhs" value="{{ $stmhs->status }}" disabled>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                    <!-- <div class="d-flex justify-content-center">
                         @foreach( $mahasiswa as $mhs)
                         <div class="p-2 bd-highlight w-25">
                             <div class="border border-secondary rounded w-100 p-3 bg-default">
@@ -91,69 +239,7 @@
                             </div>
                         </div>
                         @endforeach
-                    </div>
-                    <!-- <form action="" method="post">
-                        <div class="row p-3" id="form-content">
-                            @foreach( $mahasiswa as $mhs)
-                            <div class="col-6"> 
-                                <div class="mb-3">
-                                    <label for="Nama" class="fw-bold">Nama</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Nama" aria-label="Nama" value="{{ $mhs->nama }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Nim" class="fw-bold">Nim</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Nim" aria-label="Nim" value="{{ $mahasiswaPemutihan->isEmpty() ? $mhs->nim : $mahasiswaPemutihan[0][nim_baru] }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Nim Lain" class="fw-bold">Nim Lain(Pemutihan)</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Nim Lain" aria-label="Nim Lain" value="{{ $mahasiswaPemutihan->isEmpty() ? '-' : $mahasiswaPemutihan[0][nim_lama] }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Dosen Wali" class="fw-bold">Dosen Wali</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Dosen Wali" aria-label="Dosen Wali">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Status Sekarang" class="fw-bold">Status Sekarang</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Status Sekarang" aria-label="Status Sekarang" value="{{ $mhs->status }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="No Telepon" class="fw-bold">No Telepon</label>
-                                    <input class="form-control form-control-sm" type="number" placeholder="No Telepon" aria-label="No Telepon">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Alamat" class="fw-bold">Alamat</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Alamat" aria-label="Alamat" value="{{ $mhs->alamat }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label for="IPK" class="fw-bold">IPK</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="IPK" aria-label="IPK" value="{{ $mhs->ipk }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Total SKS" class="fw-bold">Total SKS</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Total SKS" aria-label="Total SKS" value="{{ $mhs->total_sks }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="SKS Lulus" class="fw-bold">SKS Lulus</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="SKS Lulus" aria-label="SKS Lulus">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Status ICE" class="fw-bold">Status ICE</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Status ICE" aria-label="Status ICE">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Status Tiap Semester" class="fw-bold">Status Tiap Semester</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Status Tiap Semester" aria-label="Status Tiap Semester">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="Surat Pernyataan" class="fw-bold">Surat Pernyataan</label>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Surat Pernyataan" aria-label="Surat Pernyataan">
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </form> -->
+                    </div> -->
                 </div>
             </div>
         </div>

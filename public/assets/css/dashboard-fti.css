@@ -101,7 +101,6 @@ body {
 
 .main-panel>.content {
     padding: 78px 0px 30px 220px;
-    min-height: calc(100vh - 70px);
 }
 
 .nav {
